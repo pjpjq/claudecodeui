@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Claude Code UI CLI
+ * CloudCLI CLI
  *
- * Provides command-line utilities for managing Claude Code UI
+ * Provides command-line utilities for managing CloudCLI
  *
  * Commands:
  *   (no args)     - Start the server (default)
@@ -84,7 +84,7 @@ function getInstallDir() {
 
 // Show status command
 function showStatus() {
-    console.log(`\n${c.bright('Claude Code UI - Status')}\n`);
+    console.log(`\n${c.bright('CloudCLI UI - Status')}\n`);
     console.log(c.dim('═'.repeat(60)));
 
     // Version info
@@ -141,7 +141,7 @@ function showStatus() {
 function showHelp() {
     console.log(`
 ╔═══════════════════════════════════════════════════════════════╗
-║              Claude Code UI - Command Line Tool               ║
+║              CloudCLI - Command Line Tool               ║
 ╚═══════════════════════════════════════════════════════════════╝
 
 Usage:
@@ -149,7 +149,7 @@ Usage:
   cloudcli [command] [options]
 
 Commands:
-  start          Start the Claude Code UI server (default)
+  start          Start the CloudCLI server (default)
   status         Show configuration and data locations
   update         Update to the latest version
   help           Show this help information
@@ -203,7 +203,7 @@ function isNewerVersion(v1, v2) {
 async function checkForUpdates(silent = false) {
     try {
         const { execSync } = await import('child_process');
-        const latestVersion = execSync('npm show @siteboon/claude-code-ui version', { encoding: 'utf8' }).trim();
+        const latestVersion = execSync('npm show @cloudcli-ai/cloudcli version', { encoding: 'utf8' }).trim();
         const currentVersion = packageJson.version;
 
         if (isNewerVersion(latestVersion, currentVersion)) {
@@ -236,11 +236,11 @@ async function updatePackage() {
         }
 
         console.log(`${c.info('[INFO]')} Updating from ${currentVersion} to ${latestVersion}...`);
-        execSync('npm update -g @siteboon/claude-code-ui', { stdio: 'inherit' });
+        execSync('npm update -g @cloudcli-ai/cloudcli', { stdio: 'inherit' });
         console.log(`${c.ok('[OK]')} Update complete! Restart cloudcli to use the new version.`);
     } catch (e) {
         console.error(`${c.error('[ERROR]')} Update failed: ${e.message}`);
-        console.log(`${c.tip('[TIP]')} Try running manually: npm update -g @siteboon/claude-code-ui`);
+        console.log(`${c.tip('[TIP]')} Try running manually: npm update -g @cloudcli-ai/cloudcli`);
     }
 }
 

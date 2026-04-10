@@ -79,13 +79,13 @@ The fastest way to get started — no local setup required. Get a fully managed,
 Try CloudCLI UI instantly with **npx** (requires **Node.js** v22+):
 
 ```
-npx @siteboon/claude-code-ui
+npx @cloudcli-ai/cloudcli
 ```
 
 Or install **globally** for regular use:
 
 ```
-npm install -g @siteboon/claude-code-ui
+npm install -g @cloudcli-ai/cloudcli
 cloudcli
 ```
 
@@ -104,7 +104,7 @@ CloudCLI UI is the open source UI layer that powers CloudCLI Cloud. You can self
 |---|---|---|
 | **Best for** | Developers who want a full UI for local agent sessions on their own machine | Teams and developers who want agents running in the cloud, accessible from anywhere |
 | **How you access it** | Browser via `[yourip]:port` | Browser, any IDE, REST API, n8n |
-| **Setup** | `npx @siteboon/claude-code-ui` | No setup required |
+| **Setup** | `npx @cloudcli-ai/cloudcli` | No setup required |
 | **Machine needs to stay on** | Yes | No |
 | **Mobile access** | Any browser on your network | Any device, native app coming |
 | **Sessions available** | All sessions auto-discovered from `~/.claude` | All sessions within your cloud environment |
@@ -213,9 +213,11 @@ Yes, for self-hosted. CloudCLI UI reads from and writes to the same `~/.claude` 
 
 ## License
 
-GNU General Public License v3.0 - see [LICENSE](LICENSE) file for details.
+GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later) — see [LICENSE](LICENSE) for the full text, including additional terms under Section 7.
 
-This project is open source and free to use, modify, and distribute under the GPL v3 license.
+This project is open source and free to use, modify, and distribute under the AGPL-3.0-or-later license. If you modify this software and run it as a network service, you must make your modified source code available to users of that service.
+
+CloudCLI UI  - (https://cloudcli.ai).
 
 ## Acknowledgments
 
