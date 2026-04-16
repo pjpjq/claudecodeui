@@ -11,7 +11,6 @@ import type {
   SetStateAction,
   TouchEvent,
 } from 'react';
-import MicButton from '../../../mic-button/view/MicButton';
 import type { PendingPermissionRequest, PermissionMode, Provider } from '../../types/types';
 import CommandMenu from './CommandMenu';
 import ClaudeStatus from './ClaudeStatus';
@@ -91,7 +90,6 @@ interface ChatComposerProps {
   placeholder: string;
   isTextareaExpanded: boolean;
   sendByCtrlEnter?: boolean;
-  onTranscript: (text: string) => void;
 }
 
 export default function ChatComposer({
@@ -148,7 +146,6 @@ export default function ChatComposer({
   placeholder,
   isTextareaExpanded,
   sendByCtrlEnter,
-  onTranscript,
 }: ChatComposerProps) {
   const { t } = useTranslation('chat');
   const textareaRect = textareaRef.current?.getBoundingClientRect();
@@ -163,6 +160,9 @@ export default function ChatComposer({
     (r) => r.toolName === 'AskUserQuestion'
   );
 
+  // Hide the thinking/status bar while any permission request is pending
+  const hasPendingPermissions = pendingPermissionRequests.length > 0;
+
   // On mobile, when input is focused, float the input box at the bottom
   const mobileFloatingClass = isInputFocused
     ? 'max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:z-50 max-sm:bg-background max-sm:shadow-[0_-4px_20px_rgba(0,0,0,0.15)]'
@@ -170,7 +170,7 @@ export default function ChatComposer({
 
   return (
     <div className={`flex-shrink-0 p-2 pb-2 sm:p-4 sm:pb-4 md:p-4 md:pb-6 ${mobileFloatingClass}`}>
-      {!hasQuestionPanel && (
+      {!hasPendingPermissions && (
         <div className="flex-1">
           <ClaudeStatus
             status={claudeStatus}
@@ -320,10 +320,6 @@ export default function ChatComposer({
                 />
               </svg>
             </button>
-
-            <div className="absolute right-16 top-1/2 -translate-y-1/2 transform sm:right-16" style={{ display: 'none' }}>
-              <MicButton onTranscript={onTranscript} className="h-10 w-10 sm:h-10 sm:w-10" />
-            </div>
 
             <button
               type="submit"
